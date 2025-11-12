@@ -48,8 +48,8 @@ module game_core_v8 #(
         if (!rst_n) begin
             lfsr <= 16'hACE1;
             for (i = 0; i < N; i = i + 1) begin
-                posx[i] <= 10'd(20 + i * 70);  // spread out horizontally
-                posy[i] <= 9'd(40 + (i[1:0]) * 80);  // spread out vertically
+                posx[i] <= {2'b0, i[7:0]} + 10'd20 + {i[2:0], 6'd0};  // spread out horizontally
+                posy[i] <= {i[1:0], 7'd0} + 9'd40;  // spread out vertically
                 
                 // Initial velocities (fractional: multiply by 256 for fixed-point)
                 velx[i] <= ((i[0] ? 10'sd512 : -10'sd512));   // ±2 pixels (512/256 = 2)
