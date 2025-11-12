@@ -9,11 +9,26 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Its just a led blinker
+Dog Battle Game is a VGA-based game engine featuring 4 animated "dogs" (colored boxes) that bounce around the screen with physics simulation.
+
+The design includes:
+- **Physics engine**: Friction (0.99x decay per frame), elastic collisions, wall bouncing
+- **4 dogs**: Each with individual position, velocity, mass, and color
+- **Collision detection**: Hit counters track when dogs collide with each other
+- **VGA output**: 640x480 @ 25MHz pixel clock with RGB color and sync signals
+
+The game runs continuously, updating positions once per frame (60 FPS) with realistic physics including momentum conservation and energy loss on collisions.
 
 ## How to test
-Plug it in
+
+Connect a VGA monitor to the output pins. The game will start automatically on power-up and run continuously.
+
+Output pin mapping:
+- Pins 0-1: VGA sync signals (HS, VS)
+- Pins 2-3: VGA blue (2 bits)
+- Pins 4-5: VGA green (2 bits MSB)
+- Pins 6-7: VGA red (2 bits MSB)
 
 ## External hardware
 
-Your Eyes must see.
+VGA monitor with 640x480 resolution support. Connect via standard VGA cable or appropriate PMOD adapter.
