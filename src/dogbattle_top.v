@@ -40,24 +40,6 @@ module top (
     localparam BOX_H = 32;
     localparam N = 4;
 
-    // instantiate game_core
-    wire [9:0] gx [0:N-1];
-    wire [8:0] gy [0:N-1];
-    wire signed [7:0] gvx [0:N-1];
-    wire signed [7:0] gvy [0:N-1];
-    wire [7:0] ghits [0:N-1];
-    wire [2:0] gcolor [0:N-1];
-
-    // connect arrays using regs in game_core outputs — instantiate as module with unpacked outputs
-    // For synth-friendly connection, instantiate and wire via intermediate regs handled by module ports.
-    // We'll instantiate game_core and connect to internal nets by using generate/unpacked style via top-level signals.
-
-    // Declarations for game_core outputs (regs inside module will drive these via port connection)
-    genvar gi;
-    // We need to build port list manually since Verilog-2001 doesn't support unpacked port arrays easily.
-    // For simplicity we instantiate and then assign outputs from module to wires using localparams.
-    // Here we'll create flattened nets and rely on tool to wire correctly via named connections.
-
     // Flattened nets:
     wire [9:0] posx0; wire [9:0] posx1; wire [9:0] posx2; wire [9:0] posx3;
     wire [8:0] posy0; wire [8:0] posy1; wire [8:0] posy2; wire [8:0] posy3;
@@ -66,21 +48,17 @@ module top (
     wire [7:0] hits0; wire [7:0] hits1; wire [7:0] hits2; wire [7:0] hits3;
     wire [2:0] col0; wire [2:0] col1; wire [2:0] col2; wire [2:0] col3;
 
-    // Instantiate game_core with explicit parameter N=4; map each output
+    // Instantiate game_core with flat individual ports
     game_core #(.SCREEN_W(640), .SCREEN_H(480), .BOX_W(BOX_W), .BOX_H(BOX_H), .N(4)) gc (
         .clk(pix_clk),
         .rst_n(rst_n),
         .frame_tick(frame_tick),
-
-        // manual mapping to flattened ports (module uses unpacked arrays; some synthesis tools accept)
-        // to keep compatibility, assume game_core compiled in same toolchain supports array ports.
-        // If tool complains, modify game_core to use explicit indexed ports.
-        .posx({posx3, posx2, posx1, posx0}),
-        .posy({posy3, posy2, posy1, posy0}),
-        .velx({velx3, velx2, velx1, velx0}),
-        .vely({vely3, vely2, vely1, vely0}),
-        .hits({hits3, hits2, hits1, hits0}),
-        .color_idx({col3, col2, col1, col0})
+        .posx0(posx0), .posx1(posx1), .posx2(posx2), .posx3(posx3),
+        .posy0(posy0), .posy1(posy1), .posy2(posy2), .posy3(posy3),
+        .velx0(velx0), .velx1(velx1), .velx2(velx2), .velx3(velx3),
+        .vely0(vely0), .vely1(vely1), .vely2(vely2), .vely3(vely3),
+        .hits0(hits0), .hits1(hits1), .hits2(hits2), .hits3(hits3),
+        .color_idx0(col0), .color_idx1(col1), .color_idx2(col2), .color_idx3(col3)
     );
 
     // Pixel generation: draw background gradient and boxes + hit bars

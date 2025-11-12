@@ -50,65 +50,19 @@ module dogbattle_top_v8 (
     wire [2:0] col0, col1, col2, col3;
     wire [1:0] pwr0, pwr1, pwr2, pwr3;
 
-    // Instantiate game_core_v8
-    // Use reg arrays to interface with game_core_v8
-    reg [9:0] posx_arr[0:3];
-    reg [8:0] posy_arr[0:3];
-    reg signed [9:0] velx_arr[0:3];
-    reg signed [9:0] vely_arr[0:3];
-    reg [7:0] hits_arr[0:3];
-    reg [2:0] color_idx_arr[0:3];
-    reg [1:0] power_state_arr[0:3];
-
-    // Instantiate game_core_v8 with packed arrays
+    // Instantiate game_core_v8 with flat individual ports
     game_core_v8 #(.SCREEN_W(640), .SCREEN_H(480), .BOX_W(BOX_W), .BOX_H(BOX_H), .N(4)) gc (
         .clk(pix_clk),
         .rst_n(rst_n),
         .frame_tick(frame_tick),
-        .posx({posx_arr[3], posx_arr[2], posx_arr[1], posx_arr[0]}),
-        .posy({posy_arr[3], posy_arr[2], posy_arr[1], posy_arr[0]}),
-        .velx({velx_arr[3], velx_arr[2], velx_arr[1], velx_arr[0]}),
-        .vely({vely_arr[3], vely_arr[2], vely_arr[1], vely_arr[0]}),
-        .hits({hits_arr[3], hits_arr[2], hits_arr[1], hits_arr[0]}),
-        .color_idx({color_idx_arr[3], color_idx_arr[2], color_idx_arr[1], color_idx_arr[0]}),
-        .power_state({power_state_arr[3], power_state_arr[2], power_state_arr[1], power_state_arr[0]})
+        .posx0(posx0), .posx1(posx1), .posx2(posx2), .posx3(posx3),
+        .posy0(posy0), .posy1(posy1), .posy2(posy2), .posy3(posy3),
+        .velx0(velx0), .velx1(velx1), .velx2(velx2), .velx3(velx3),
+        .vely0(vely0), .vely1(vely1), .vely2(vely2), .vely3(vely3),
+        .hits0(hits0), .hits1(hits1), .hits2(hits2), .hits3(hits3),
+        .color_idx0(col0), .color_idx1(col1), .color_idx2(col2), .color_idx3(col3),
+        .power_state0(pwr0), .power_state1(pwr1), .power_state2(pwr2), .power_state3(pwr3)
     );
-
-    // Wire up the individual signals to array elements
-    assign posx0 = posx_arr[0];
-    assign posx1 = posx_arr[1];
-    assign posx2 = posx_arr[2];
-    assign posx3 = posx_arr[3];
-
-    assign posy0 = posy_arr[0];
-    assign posy1 = posy_arr[1];
-    assign posy2 = posy_arr[2];
-    assign posy3 = posy_arr[3];
-
-    assign velx0 = velx_arr[0];
-    assign velx1 = velx_arr[1];
-    assign velx2 = velx_arr[2];
-    assign velx3 = velx_arr[3];
-
-    assign vely0 = vely_arr[0];
-    assign vely1 = vely_arr[1];
-    assign vely2 = vely_arr[2];
-    assign vely3 = vely_arr[3];
-
-    assign hits0 = hits_arr[0];
-    assign hits1 = hits_arr[1];
-    assign hits2 = hits_arr[2];
-    assign hits3 = hits_arr[3];
-
-    assign col0 = color_idx_arr[0];
-    assign col1 = color_idx_arr[1];
-    assign col2 = color_idx_arr[2];
-    assign col3 = color_idx_arr[3];
-
-    assign pwr0 = power_state_arr[0];
-    assign pwr1 = power_state_arr[1];
-    assign pwr2 = power_state_arr[2];
-    assign pwr3 = power_state_arr[3];
 
     // Pixel generation
     reg [2:0] out_r;
