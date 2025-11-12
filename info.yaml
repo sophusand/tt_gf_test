@@ -1,29 +1,21 @@
 # Tiny Tapeout project information
 project:
-  title:        "Dog Battle Game"      # Project title
-  author:       "Sophus Andreassen"    # Your name
-  discord:      "Sophusz"              # Your Discord username
-  description:  "A simple Dog Battle VGA game with moving boxes that collide and count hits." 
+  title:        "Dog Battle Game"
+  author:       "Sophus Andreassen"
+  discord:      "Sophusz"
+  description:  "A simple Dog Battle VGA game with moving boxes that collide and count hits."
   language:     "Verilog"
-  clock_hz:     50000000               # 50 MHz clock
-
-  # Chip tile size (1x1 is enough for small logic)
+  clock_hz:     50000000
   tiles: "1x1"
-
-  # Top module name must start with "tt_um_" + your GitHub username
   top_module:  "tt_um_SophusAndreassen_dogbattle"
 
-  # List all your source files here
   source_files:
     - "src/tt_um_SophusAndreassen_dogbattle.v"
     - "src/dogbattle_top.v"
     - "src/vga_timing.v"
     - "src/game_core.v"
 
-# The pinout of your project
-# These names are for documentation purposes only (they describe what each pin does)
 pinout:
-  # Inputs
   ui[0]: "clk_50mhz"
   ui[1]: "reset_n"
   ui[2]: ""
@@ -33,7 +25,6 @@ pinout:
   ui[6]: ""
   ui[7]: ""
 
-  # Outputs
   uo[0]: "vga_r0"
   uo[1]: "vga_g0"
   uo[2]: "vga_b0"
@@ -43,7 +34,6 @@ pinout:
   uo[6]: "vga_g1"
   uo[7]: "vga_b1"
 
-  # Bidirectional pins (unused)
   uio[0]: ""
   uio[1]: ""
   uio[2]: ""
@@ -53,5 +43,4 @@ pinout:
   uio[6]: ""
   uio[7]: ""
 
-# Do not change!
 yaml_version: 6
