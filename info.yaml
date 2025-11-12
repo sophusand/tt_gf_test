@@ -5,7 +5,7 @@ project:
   discord:      "Sophusz"              # Your Discord username
   description:  "A simple VGA dog battle game with 2 moving boxes that collide." 
   language:     "Verilog"
-  clock_hz:     50000000               # 50 MHz clock
+  clock_hz:     0                      # Clock-agnostic design
   tiles:        "1x1"                  # Back to 1x1 with simplified design
   top_module:   "tt_um_SophusAndreassen_dogbattle"
 
