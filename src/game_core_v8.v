@@ -49,52 +49,52 @@ module game_core_v8 #(
             cd_timer <= 4'd0;
         end else begin
             if (frame_tick) begin
-                // Simple friction
-                velx0 <= (velx0 * 255) / 256;
-                vely0 <= (vely0 * 255) / 256;
-                velx1 <= (velx1 * 255) / 256;
-                vely1 <= (vely1 * 255) / 256;
+                // Simple friction (use shift instead of division)
+                velx0 <= (velx0 * 255) >>> 8;
+                vely0 <= (vely0 * 255) >>> 8;
+                velx1 <= (velx1 * 255) >>> 8;
+                vely1 <= (vely1 * 255) >>> 8;
                 
                 // Move dog 0
                 posx0 <= posx0 + (velx0 >>> 8);
                 posy0 <= posy0 + (vely0 >>> 8);
                 
-                // Boundary bounce dog 0
+                // Boundary bounce dog 0 (shift instead of division)
                 if (posx0 <= 0) begin
                     posx0 <= 0;
-                    velx0 <= -(velx0 / 2);
+                    velx0 <= -(velx0 >>> 1);
                 end else if (posx0 + BOX_W >= SCREEN_W) begin
                     posx0 <= SCREEN_W - BOX_W;
-                    velx0 <= -(velx0 / 2);
+                    velx0 <= -(velx0 >>> 1);
                 end
                 
                 if (posy0 <= 0) begin
                     posy0 <= 0;
-                    vely0 <= -(vely0 / 2);
+                    vely0 <= -(vely0 >>> 1);
                 end else if (posy0 + BOX_H >= SCREEN_H) begin
                     posy0 <= SCREEN_H - BOX_H;
-                    vely0 <= -(vely0 / 2);
+                    vely0 <= -(vely0 >>> 1);
                 end
                 
                 // Move dog 1
                 posx1 <= posx1 + (velx1 >>> 8);
                 posy1 <= posy1 + (vely1 >>> 8);
                 
-                // Boundary bounce dog 1
+                // Boundary bounce dog 1 (shift instead of division)
                 if (posx1 <= 0) begin
                     posx1 <= 0;
-                    velx1 <= -(velx1 / 2);
+                    velx1 <= -(velx1 >>> 1);
                 end else if (posx1 + BOX_W >= SCREEN_W) begin
                     posx1 <= SCREEN_W - BOX_W;
-                    velx1 <= -(velx1 / 2);
+                    velx1 <= -(velx1 >>> 1);
                 end
                 
                 if (posy1 <= 0) begin
                     posy1 <= 0;
-                    vely1 <= -(vely1 / 2);
+                    vely1 <= -(vely1 >>> 1);
                 end else if (posy1 + BOX_H >= SCREEN_H) begin
                     posy1 <= SCREEN_H - BOX_H;
-                    vely1 <= -(vely1 / 2);
+                    vely1 <= -(vely1 >>> 1);
                 end
                 
                 // Collision detection
