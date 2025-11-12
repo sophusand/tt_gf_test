@@ -52,8 +52,15 @@ module game_core_v8 #(
                 posy[i] <= {i[1:0], 7'd0} + 9'd40;  // spread out vertically
                 
                 // Initial velocities (fractional: multiply by 256 for fixed-point)
-                velx[i] <= ((i[0] ? 10'sd512 : -10'sd512));   // ±2 pixels (512/256 = 2)
-                vely[i] <= ((i[1] ? 10'sd256 : -10'sd256));   // ±1 pixel
+                if (i[0])
+                    velx[i] <= 10'sd512;   // +2 pixels (512/256 = 2)
+                else
+                    velx[i] <= 10'sd(-512);  // -2 pixels
+                
+                if (i[1])
+                    vely[i] <= 10'sd256;   // +1 pixel
+                else
+                    vely[i] <= 10'sd(-256);  // -1 pixel
                 
                 hits[i] <= 8'd0;
                 color_idx[i] <= i[2:0];
