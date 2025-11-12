@@ -3,10 +3,10 @@ project:
   title:        "Dog Battle Game"      # Project title
   author:       "Sophus Andreassen"    # Your name
   discord:      "Sophusz"              # Your Discord username
-  description:  "A simple Dog Battle VGA game with moving boxes that collide and count hits." 
+  description:  "A simple VGA dog battle game with 2 moving boxes that collide." 
   language:     "Verilog"
   clock_hz:     50000000               # 50 MHz clock
-  tiles:        "1x2"                  # Increased to 1x2 for larger design
+  tiles:        "1x1"                  # Back to 1x1 with simplified design
   top_module:   "tt_um_SophusAndreassen_dogbattle"
 
   source_files:
