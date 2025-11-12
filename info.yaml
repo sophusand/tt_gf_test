@@ -1,23 +1,22 @@
 # Tiny Tapeout project information
 project:
-  title:        "Dog Battle Game"
-  author:       "Sophus Andreassen"
-  discord:      "Sophusz"
-  description:  "A simple Dog Battle VGA game with moving boxes that collide and count hits."
+  title:        "Dog Battle Game"      # Project title
+  author:       "Sophus Andreassen"    # Your name
+  discord:      "Sophusz"              # Your Discord username
+  description:  "A simple Dog Battle VGA game with moving boxes that collide and count hits." 
   language:     "Verilog"
-  clock_hz:     50000000
-  tiles: "1x1"
-  top_module:  "tt_um_SophusAndreassen_dogbattle"
+  clock_hz:     50000000               # 50 MHz clock
+  tiles:        "1x1"                  # Chip tile size
+  top_module:   "tt_um_SophusAndreassen_dogbattle"
 
-top_module:  "tt_um_SophusAndreassen_dogbattle"
-
-source_files:
-  - "src/tt_um_SophusAndreassen_dogbattle.v"
-  - "src/dogbattle_top.v"
-  - "src/vga_timing.v"
-  - "src/game_core.v"
+  source_files:
+    - "src/tt_um_SophusAndreassen_dogbattle.v"
+    - "src/dogbattle_top.v"
+    - "src/vga_timing.v"
+    - "src/game_core.v"
 
 pinout:
+  # Inputs
   ui[0]: "clk_50mhz"
   ui[1]: "reset_n"
   ui[2]: ""
@@ -27,6 +26,7 @@ pinout:
   ui[6]: ""
   ui[7]: ""
 
+  # Outputs
   uo[0]: "vga_r0"
   uo[1]: "vga_g0"
   uo[2]: "vga_b0"
@@ -36,6 +36,7 @@ pinout:
   uo[6]: "vga_g1"
   uo[7]: "vga_b1"
 
+  # Bidirectional (unused)
   uio[0]: ""
   uio[1]: ""
   uio[2]: ""
