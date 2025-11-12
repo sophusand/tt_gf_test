@@ -10,10 +10,10 @@ project:
   top_module:   "tt_um_SophusAndreassen_dogbattle"
 
   source_files:
-    - "src/tt_um_SophusAndreassen_dogbattle.v"
-    - "src/dogbattle_top.v"
+    - "src/project.v"
+    - "src/dogbattle_top_v8.v"
+    - "src/game_core_v8.v"
     - "src/vga_timing.v"
-    - "src/game_core.v"
 
 pinout:
   # Inputs
