@@ -1,30 +1,30 @@
 # Tiny Tapeout project information
 project:
-  title:        "Astabil multivibator"      # Project title
-  author:       "Sophus Andreassen"      # Your name
-  discord:      "Sophusz"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Big Astabil multivibator"      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  title:        "Dog Battle Game"      # Project title
+  author:       "Sophus Andreassen"    # Your name
+  discord:      "Sophusz"              # Your Discord username
+  description:  "A simple Dog Battle VGA game with moving boxes that collide and count hits." 
+  language:     "Verilog"
+  clock_hz:     50000000               # 50 MHz clock
 
-  # How many tiles your design occupies? A single tile is about 340x160 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
+  # Chip tile size (1x1 is enough for small logic)
+  tiles: "1x1"
 
-  # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_SophusAndreassen_astabilmultivibator"
+  # Top module name must start with "tt_um_" + your GitHub username
+  top_module:  "tt_um_SophusAndreassen_dogbattle"
 
-  # List your project's source files here.
-  # Source files must be in ./src and you must list each source file separately, one per line.
-  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  # List all your source files here
   source_files:
-    - "project.v"
+    - "src/top.v"
+    - "src/vga_timing.v"
+    - "src/game_core.v"
 
-# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
-# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+# The pinout of your project
+# These names are for documentation purposes only (they describe what each pin does)
 pinout:
   # Inputs
-  ui[0]: "A"
-  ui[1]: ""
+  ui[0]: "clk_50mhz"
+  ui[1]: "reset_n"
   ui[2]: ""
   ui[3]: ""
   ui[4]: ""
@@ -33,17 +33,17 @@ pinout:
   ui[7]: ""
 
   # Outputs
-  uo[0]: "B"
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "vga_r0"
+  uo[1]: "vga_g0"
+  uo[2]: "vga_b0"
+  uo[3]: "vga_hs"
+  uo[4]: "vga_vs"
+  uo[5]: "vga_r1"
+  uo[6]: "vga_g1"
+  uo[7]: "vga_b1"
 
-  # Bidirectional pins
-  uio[0]: "C"
+  # Bidirectional pins (unused)
+  uio[0]: ""
   uio[1]: ""
   uio[2]: ""
   uio[3]: ""
