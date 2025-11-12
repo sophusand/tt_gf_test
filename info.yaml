@@ -14,11 +14,11 @@ project:
   top_module:  "tt_um_SophusAndreassen_dogbattle"
 
   # List all your source files here
-source_files:
-  - "src/tt_um_SophusAndreassen_dogbattle.v"
-  - "src/dogbattle_top.v"
-  - "src/vga_timing.v"
-  - "src/game_core.v"
+  source_files:
+    - "src/tt_um_SophusAndreassen_dogbattle.v"
+    - "src/dogbattle_top.v"
+    - "src/vga_timing.v"
+    - "src/game_core.v"
 
 # The pinout of your project
 # These names are for documentation purposes only (they describe what each pin does)
